@@ -1,5 +1,5 @@
 # Arduino-uno
-Basic codes used in Arduino uno are uploaded here. With these, we can make a line follower robot.
+Basic codes used in <b>Arduino Uno</b> are uploaded here. With these, we can make a Line Follower robot.
 If you don't have uno board, use online simulators.
-Example:
-Thinkercad    ---->     https://www.tinkercad.com
+For example:
+<a href="https://www.tinkercad.com">Tinkercad</a>
