@@ -1,61 +1,61 @@
 // Line follower
 // sensors output 1 when they doesnot encounter black line (specifically any absorbing material)
 // sensors output 0 when they encounter black line (as black color perfectly absorbs the IR radiations sent by sensor, hence they doesnot detect any reflections of these radiations)
+// in this case the sensors give 0 as output when they detect white and 1 for black
+// To make the line follower to turn even steep turns, connect motors output pins("IN" pins) to analog and decrease the speed
 
-#define LS 1
-#define RS 2
+#define LS 13
+#define RS 11
 
-#define LM1 4
+#define LM1 3
 #define LM2 5
 #define RM1 6
-#define RM2 7
+#define RM2 9
+
+int speed=115;
 
 void setup()
 {
-  pinMode(LS,INPUT)
-  pinMode(RS,INPUT)
-  
-  pinMode(RM1,OUTPUT) 
-  pinMode(RM2,OUTPUT) 
-  pinMode(LM1,OUTPUT) 
-  pinMode(LM2,OUTPUT) 
+  pinMode(LS,INPUT);
+  pinMode(RS,INPUT);
+ 
+  pinMode(RM1,OUTPUT);
+  pinMode(RM2,OUTPUT);
+  pinMode(LM1,OUTPUT);
+  pinMode(LM2,OUTPUT);
 }
 
 void loop()
 {
-  if(digitalRead(LS) && digitalRead(RS))
-  // moves forward 
+  if(digitalRead(LS)==0 && digitalRead(RS)==0)
   {
-    digitalWrite(LM1, HIGH);
-    digitalWrite(LM2, LOW);
-    digitalWrite(RM1, HIGH);
-    digitalWrite(RM2, LOW);
+    analogWrite(LM1, speed);
+    analogWrite(LM2, 0);
+    analogWrite(RM1, speed);
+    analogWrite(RM2, 0);
   }
-  
-  if(!(digitalRead(LS)) && digitalRead(RS))     
-  // turns left
+ 
+  if((digitalRead(LS))==1 && (digitalRead(RS))==0)    
   {
-    digitalWrite(LM1, LOW);
-    digitalWrite(LM2, LOW);
-    digitalWrite(RM1, HIGH);
-    digitalWrite(RM2, LOW);
+    analogWrite(LM1, 0);
+    analogWrite(LM2, 0);
+    analogWrite(RM1, speed);
+    analogWrite(RM2, 0);
   }
-  
-  if(digitalRead(LS) && !(digitalRead(RS)))     
-  // turns right
+ 
+  if(digitalRead(LS)==0 && (digitalRead(RS))==1)    
   {
-    digitalWrite(LM1, HIGH);
-    digitalWrite(LM2, LOW);
-    digitalWrite(RM1, LOW);
-    digitalWrite(RM2, LOW);
+    analogWrite(LM1, speed);
+    analogWrite(LM2, 0);
+    analogWrite(RM1, 0);
+    analogWrite(RM2, 0);
   }
-  
-  if(!(digitalRead(LS)) && !(digitalRead(RS)))  
-  // stops moving
+ 
+  if((digitalRead(LS))==1 && (digitalRead(RS))==1)  
   {
-    digitalWrite(LM1, LOW);
-    digitalWrite(LM2, LOW);
-    digitalWrite(RM1, LOW);
-    digitalWrite(RM2, LOW);
+    analogWrite(LM1, 0);
+    analogWrite(LM2, 0);
+    analogWrite(RM1, 0);
+    analogWrite(RM2, 0);
   }
 }
