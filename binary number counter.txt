@@ -1,17 +1,13 @@
 void setup()
 {
-  pinMode(9, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(5, OUTPUT);
+  for ( int i = 5; i < 13; i++ )	{
+  	pinMode(i, OUTPUT);	// made the code shorter
+  }
 }
 
 int n=10,rem,i=0,j,k;
 int array[8]={0};
+
 void loop()
 {
 	while (n>0)
