@@ -22,12 +22,12 @@ void loop()
     	if (array[i]==1)
         {
         	digitalWrite(i+5, HIGH);
-  			delay(500); 
+  			delay(1500); 
   		}
       	else
         {
         	digitalWrite(i+5, LOW);
-  			delay(500); 
+  			delay(1500); 
         }
       
     }
